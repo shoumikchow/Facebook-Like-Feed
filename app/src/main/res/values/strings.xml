@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Facebook Like FeedView</string>
+    <string name="title_activity_list_item">ListItem</string>
+</resources>
