@@ -25,7 +25,7 @@ public class FeedListAdapter extends BaseAdapter {
         inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.hivemodel = hivemodel;
 
-        Log.d("RESPONSE","This is constructor");
+
 
     }
 
@@ -58,7 +58,7 @@ public class FeedListAdapter extends BaseAdapter {
         ImageView feed_image=(ImageView) customView.findViewById(R.id.feed_image);
 
 
-        Log.d("RESPONSE",""+getItem(position).getName());
+
          //Converting timestamp into x ago format
 
         CharSequence timeAgo = DateUtils.getRelativeTimeSpanString(

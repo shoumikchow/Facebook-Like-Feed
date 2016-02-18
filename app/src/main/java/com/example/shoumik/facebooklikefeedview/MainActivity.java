@@ -1,7 +1,6 @@
 package com.example.shoumik.facebooklikefeedview;
 
-import android.app.ActionBar;
-import android.app.ListActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -12,24 +11,21 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.shoumik.facebooklikefeedview.API.HivaAPI;
-import com.example.shoumik.facebooklikefeedview.model.Feed;
 import com.example.shoumik.facebooklikefeedview.model.HiveModel;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private String TAG="testTag";
     private ListView list;
     private String API="http://api.androidhive.info/feed/";
     private FeedListAdapter listAdapter;
-    private HiveModel hivemodel;
+    private HiveModel hivemodel=new HiveModel();
 
 
     @Override
@@ -49,11 +45,11 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void success(HiveModel hiveModel, Response response) {
                 //Log.d(TAG,""+hiveModel.getFeed().getName());
-
+                hivemodel = hiveModel;
                 listAdapter = new FeedListAdapter(MainActivity.this, hiveModel);
                 list.setAdapter(listAdapter);
 
-                Log.d("RESPONSE", "This is main");
+
             }
 
             @Override
@@ -62,26 +58,30 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+//                switch (position){
+//                    case 0:
+//                        Log.d("RESPONSE 0",""+hivemodel.getFeed()[position].getName());
+//                        break;
+//                    case 1:
+//                        Log.d("RESPONSE 1",""+hivemodel.getFeed()[position].getName());
+//                        break;
+//                }
+
+
+                Intent i=new Intent(MainActivity.this,ListItem.class);
+                i.putExtra("itemName", hivemodel.getFeed()[position].getName());
+                startActivity(i);
+            }
+        });
 
 
 
-        //JSONParser();
+
     }
 
-//    @Override
-//    protected void onListItemClick(ListView l, View v, int position, long id) {
-//        super.onListItemClick(l, v, position, id);
-//
-//        Intent i=new Intent(this,ListItem.class);
-//        i.putExtra("itemName",hivemodel.getFeed()[position].getName());
-////        i.putExtra("itemUrl", hivemodel.getFeed()[position].getUrl());
-////        i.putExtra("itemstatus",hivemodel.getFeed()[position].getStatus());
-//        startActivity(i);
-//
-//    }
 
-//    public void JSONParser(){
-//
-//
-//    }
 }

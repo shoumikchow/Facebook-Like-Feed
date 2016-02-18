@@ -7,6 +7,10 @@ public class HiveModel {
 
     Feed[] feed;
 
+    public void setFeed(Feed[] feed) {
+        this.feed = feed;
+    }
+
     public Feed[] getFeed() {
         return feed;
     }
